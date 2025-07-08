@@ -2,13 +2,13 @@
   "name": "demon-jeopardy",
   "version": "1.0.0",
   "description": "Echoes of the Expanse is a Jeopardy-like web application. It provides trivia with questions based on the demons of Atlus' Megami Tensei franchise. Players can either attempt matches solo as a team or versus against each others as different teams.",
-  "main": "index.js",
+  "main": "frontend/src/index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
     "react": "cd frontend && npm start",
-    "electron": "electron .",
+    "electron": "wait-on http://localhost:3000 && electron .",
     "dev": "concurrently \"npm run react\" \"npm run electron\"",
     "build": "cd frontend && npm run build",
     "start": "npm run dev",
@@ -27,7 +27,8 @@
   "homepage": "https://github.com/PsychopathPotato/Demon-Jeopardy#readme",
   "devDependencies": {
     "concurrently": "^9.2.0",
-    "electron": "^37.1.0"
+    "electron": "^37.1.0",
+    "wait-on": "^8.0.3"
   },
   "dependencies": {
     "better-sqlite3": "^12.2.0"
