@@ -1,0 +1,16 @@
+{
+    "appId": "com.psychopathpotato.expanse",
+    "files": ["dist-react","dist-electron"],
+    "icon": "./desktopIcon.png",
+    "mac": {
+        "category": "public.app-category.games",
+        "target": "dmg"
+    },
+    "win": {
+        "target": ["portable","msi"]
+    },
+    "linux": {
+        "target": ["AppImage"],
+        "category": "Game"
+    }
+}
