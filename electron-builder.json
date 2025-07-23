@@ -1,13 +1,20 @@
 {
     "appId": "com.psychopathpotato.expanse",
     "files": ["dist-react","dist-electron"],
+    "extraResources": [
+        "dist-electron/preload.cjs",
+        {
+            "from": "src/models/expanse.db",
+            "to": "expanse.db"
+        }
+    ],
     "icon": "./desktopIcon.png",
     "mac": {
         "category": "public.app-category.games",
         "target": "dmg"
     },
     "win": {
-        "target": ["portable","msi"]
+        "target": ["portable","msi"]   
     },
     "linux": {
         "target": ["AppImage"],
