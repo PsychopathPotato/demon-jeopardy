@@ -13,6 +13,7 @@ if (!fs.existsSync(dbPath)) {
 }
 
 const db = new Database(dbPath);
+db.pragma('journal_mode = WAL');
 
 export function getQuestions(mainWindow: BrowserWindow) {
     return new Promise((resolve, reject) => {
