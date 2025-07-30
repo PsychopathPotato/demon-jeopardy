@@ -112,7 +112,7 @@ CREATE TABLE Scoreboard (
 );
 
 INSERT INTO Category (cId, cName) VALUES 
-(?, 'Abrahamic'), (?,'Norse'), (?, 'Goetia'), (?, 'Japanese'), (?, 'Greco-Roman'), (?, 'Egyptian'), (?,'Buddhism'), (?, 'Hinduism');
+(?, 'Abrahamic'), (?,'Norse'), (?, 'Goetia'), (?, 'Japanese'), (?, 'Greco-Roman'), (?, 'Hinduism');
 
 INSERT INTO Timer (timeId, time) VALUES
 (?, 120), (?, 150), (?, 180);
@@ -407,5 +407,99 @@ Cloaked in dark clothing, Thanatos wields a blade that brings death to its victi
 (?, 5, 1, 'Reverend god of Greek lore.
 He is the omniscient and omnipotent sky father, the king of the gods, head of the Twelve Olympians, and the ruler of the universe.
 He is the son of Kronos, and the younger brother of Hades and Poseidon. He ruled the entire universe after defeating his father and the Titans.
-He had many children with not only other goddesses, but also with humans.')
+He had many children with not only other goddesses, but also with humans.'),
+
+
+
+
+
+(?, 6, 4, 'One of the main Deva gods of Hindu lore. He is the embodiment of fire, said to have three heads and three or seven arms. Offerings to him are burned, and he carries them to the gods through the smoke.'),
+(?, 6, 3, 'A giant elephant with four tusks which serves as the steed of Indra. His body is white as snow.
+He was born from the churning of the milk ocean and is the king of elephants. His size is comparable to that of Mt. Kailash, where Shiva resides.'),
+(?, 6, 1, 'One of the kings of the Nagas. It is a giant serpent with a thousand heads, whose name means "infinite." It sleeps under the earth and will watch over the end of the world with Vishnu. Until the time comes, Ananta will protect Vishnu for eons in the sea of milk.'),
+(?, 6, 1, 'Water spirits in Hindu lore. Their name means "those who move in the water."
+They appear as young women with enchanting beauty often used as a symbol of temptation. Apsaras are known to carry the souls of those who die in battle to heaven, where Indra, the god of thunder, awaits them.'),
+(?, 6, 3, 'A dual-gendered god whose appearance is the half that of the destroyer god Shiva and half his wife, Parvati. They are the ideal figure of Shaktism, the perfect god.'),
+(?, 6, 2, 'A violent group of demons in Hindu lore. They were very powerful and caused the gods great trouble.
+They are a strict group and attack anyone who runs counter to their ideals. They were originally gods of light who were worshipped in Persia. The Zoroastrian god Ahura Mazda was one of them.'),
+(?, 6, 5, 'A Hindu ghost of a woman. She bewitches young men and possesses them.
+A woman who dies in childbirth or during impure rituals becomes one of these. She has no mouth and her legs are on backwards. '),
+(?, 6, 5, 'A type of preta, residing in the hunger realm of the six Buddhist domains. It cooks and eats insects out of the air with the fire it spits out, but its insatiable hunger is its eternal torment. They are small-wealth pretas, and are allowed to eat some unclean things; other preta are forced to eat feces or burnt bodies.'),
+(?, 6, 1, 'An elephant-headed god of knowledge, learning, wealth, and prosperity in Hindu lore. He is the son of Shiva and Parvati.
+Originally Parvati created him to stop anyone from watching her bathe. Shiva batted his head off but replaced it with a heaed of an elephant, resulting in his current from. Because he destroys obstacles and brings about good fortune and success, he is popular with merchants. He is also known as Vinayaka in Japanese Buddhism.'),
+(?, 6, 4, 'Sacred incarnation of the Ganges River. She is represented as a proud and beautiful woman. She was a river that flowed from the tip of the toe of Vinshu and passed through the heavenly lands, but it came to flow through the earth by the holy king Bagiratha. She comes from the Himalayas and the water pouring from her mouth is the source of the Ganges River. It is said that the water can cleanse all kinds of sins.'),
+(?, 6, 2, 'A demon that takes the shape of a giant bird in Sri Lankan mythology.
+It is believed to be a derivation of Garuda, the spirit bird of Indian mythology, which is in ideological opposition to its place in Sri Lankan mythology, in which it is interpreted as a demon.'),
+(?, 6, 4, 'A holy white goose which serves as the steed of the Hindu god Brahma.
+During winter, geese migrate over India. These majestic white figures flying through the sky became symbolic of Brahmin dignity as they tried to reach Brahma, the god of knowledge. This may be how Hamsa came to be seen as the steed of Brahma.'),
+(?, 6, 2, 'A heroic monkey god of Hindu descent who is renowned and popular. He is extremely nimble and has extraordinary knowledge.
+He is known to have helped Vishnu in the guise of Prince Rama and performed many heroic deeds in the Ramayana. His name means "jaw," and he has golden skin, a red face that shines like a ruby, and an extremely long tail. Since he is the son of the wind god Vayu, he can fly and change shape into many forms.'),
+(?, 6, 4, 'Son of Vishnu and the wise King of the Bears in Hindu lore. He leads an army of bears.
+In the Valmiki Ramayana, he assisted Prince Rama along with Hanuman, the monkey god, and fought against Ravana. In honor of his service, Prince Rama granted him the blessing of being weak only against his father. But in the Mahabharata, he has to fight Krishna, an incarnation of his father Vishnu, over a magic jewel, during which he is slain.'),
+(?, 6, 2, 'A king of the birds, appearing in the Indian epic "Ramayana."
+He takes the form of a vulture and was said to have lived for over 6,000 years.
+Although he is the son of Arna, brother of Garuda, another king of the birds, he is also sometimes considered the son of Garuda himself.
+In the "Ramayana," he forms a friendship with King Rama, an incarnation of the supreme Hindu deity Vishnu, and promised to protect his queen, Sita. However, Sita was kidnapped by Ravana, king of the Rakshasas and an enemy of Rama.
+He set out alone to save Sita, but had his wings cut off by a sword and was mortally wounded. He died in the arms of Rama.'),
+(?, 6, 1, 'A goddess of Indian mythology. She is one of the consorts of Shiva, the god of destruction.
+Her means "black one" and is derived from the word "kala" (black), but has also come to mean "goddess of time." Her sacred place is Calcutta, where she still retains many followers who worship her as a mother goddess. She is identified with Durga, an alternate aspect of Parvati transformed by anger at Asura into a fearsome form.
+She loves blood, wine, slaughter, and battle. She is black from head to toe and has four arms, each of which is always carrying a blood-stained weapon or a severed head. However, her arms are said to have the power to grant blessings to those who believe in her.'),
+(?, 6, 5, 'The Hindu god of sexual desire. He looks like a young, handsome man on a owl.
+He uses honeybees as his string and shoots arrows tipped with flowers. By a request of the gods, he shot Shiva, but Shiva was angered and burned him with his third eye.'),
+(?, 6, 5, 'A Hindu god of war, also known as Skanda and Murugan.
+He rides upon a peacock called Paravani, with bow and arrow drawn. He commands the army of the gods, and defeated the forces of Asura.'),
+(?, 6, 5, 'A divine hero of Hindu mythology. He is the eighth avatar of Vishnu, who is said to appear whenever the world is at risk. Name is sometimes translated as "all-attractive."
+Raised by cow herders. As a boy, he would play his flute, causing women to flock to him. As an adult, he became a great tactician. Shot in the back of the leg by mistake by a hunter named Jara.'),
+(?, 6, 1, 'The goddess of beauty and good fortune in Hindu lore. She is a love goddess, wife to Vishnu and mother to Kama.
+She is the embodiment of the ideal woman and is said to have charmed many gods with her dance.'),
+(?, 6, 1, 'A giant Asura in Hinduism whose name means "the intoxication."
+It is said that the sage Chyavana created it from fire. Mada has the power to swallow its enemies, and even the deity Indra has been said to surrender to its power.'),
+(?, 6, 4, 'An Indian god who repels evil, known as Daikokuten in Buddhism.
+His swords are fearsome, but by paying tribute to him, his worshippers are blessed with tremendous wealth and happiness. One theory holds that he is an incarnation of Shiva, the destroyer.'),
+(?, 6, 3, 'A holy creature that carries the gods on its back in Hindu lore. It lives in rivers and lakes.
+It is a type of fish said to have the qualities of crocodiles, hippopotami, elephants, and Naga. In the Da Tang Xiyu Ji, a Buddhist record of the western world, it is the size of a mountain and its eyes shine like the sun.'),
+(?, 6, 2, 'A sun goddess of Buddhism, her name means "light" or "heat haze." In Japan, where she is known as Marishiten, she was worshipped by warriors, said to protect them from harm and enemy detection. Often portrayed as having three heads and six-to-eight arms, holding weapons such as swords, bows, and vajra.'),
+(?, 6, 5, 'The Hindu personification of illusion. It is said to have the power to make humans aware and become enlightened about "phenomena" caused by things on Earth.
+One of these of Burmese lore was a mother goddess and may have some relation to the goddess of illusion.'),
+(?, 6, 1, 'Snake gods of Indian mythology, depicted as being half-snake and half-human. They are regarded as gods of rebirth or reincarnation. The Naga live at the bottom of lakes, in rivers and oceans. When they are not at war, they live a joyful life singing and dancing.'),
+(?, 6, 2, 'The king of the serpent people in Hindu mythology. He is the largest of all those that live in the ocean. The dragon kings Nanda and Takshaka of Buddhist myth fall into this royal category.'),
+(?, 6, 4, 'A sacred cow that serves as the mount of the god Shiva in Hindu tradition. Its name means "fortunate one," and it symbolizes fertility and the harvest. Its body is the color of milk and it carries Shiva and his wife Parvati on its back. Shiva is also known as the god of dance, and when he dances, his mount plays the music.
+It is enshrined alongside Shiva in many temples in India. Its statue is always set facing the statue of Shiva so that it is ready to serve its master at any moment.'),
+(?, 6, 5, 'A half-human, half-lion god in Indian mythology. The fourth avatar of the preserver god Vishnu.
+Hiranyakashipu from the Asura was granted the wish for a body that could not be killed by god nor Asura, man or beast, during day or night, inside or outside of a residence, nor by any weapon. For the sake of defeating that Hiranyakashipu, Vishnu took on the form of a lion-headed man.'),
+(?, 6, 4, 'A monkey god in Hindu mythology, he is the general of the army of Hanuman. In the Ramakian, the national epic of Thailand, it is written that he fought with a giant and freed it from its curse.'),
+(?, 6, 1, 'An extremely beautiful consort of Shiva in Hindu mythology, she symbolizes many virtues.She is the reincarnation of Sati, the previous wife of Shiva.
+Always by his side and won his love, overcoming his asceticism. She plunged the world into darkness by closing his two eyes, aiding in the opening of his third eye.'),
+(?, 6, 2, 'A type of demon in Hindu mythology that arises from the vices of men such as criminals, drunkards and adulterers.
+Known to feast on the flesh of corpses, it is said that it can possess a human by entering through their mouth, where it will plague them until it is driven away through magic or medicine. It is also said that anyone who looks upon one directly is guaranteed to die within nine months. '),
+(?, 6, 3, 'In Hindu mythology, he is a god with a head of an elephant and a third eye on his forehead. Although his looks suggests influence from Ganesha, he is thought to have originally been a local god of Tibet.'),
+(?, 6, 1, 'Evil spirits that battle the gods in Hindu lore. They also attack humans.
+Their hideous appearance symbolizes their evil nature, but they can also change shape to fool humans.'),
+(?, 6, 5, 'A prince of Kosala and the seventh avatar of Vishnu. He is the protagonist of the epic poem, the Ramayana. He defeated Ravana the rakshasa, who was unkillable by neither god nor demon.
+His serious and earnest personality made him a popular hero in India.'),
+(?, 6, 1, 'In Hindu lore, she is the consort of Brahma and the goddess of knowledge, music, and art, who appears with a vina.
+Because Vedas, songs offered to the gods, are said to be her creation, she is known as the mother of the Vedas. Brahma was fascinated by her beauty and though she tried to dodge his gaze, each time a new face formed. Finally, after he gained four faces, she realized that she could not escape and gave up, becoming his wife.'),
+(?, 6, 3, 'The first consort of Shiva in Hindu mythology, she threw herself into a sacrificial fire in protest of the mistreatment her father  had towards Shiva. Reincarnated as Parvati, she was reunited with Shiva.'),
+(?, 6, 1, 'The great god who governs the destruction and creation of the world. He is the most worshiped god in Hinduism alongside Vishnu.
+It is said that he purifies the world through destruction only to rebuild it anew, and though he casts terrifying destruction against the demons, he also blesses his followers. He has been depicted in many ways, but the most common is for him to have four hands, one face, and three eyes. He wields a trishula, or trident, and his third eye is said to emit a ray of light that destroys all it touches.'),
+(?, 6, 2, 'A legendary bird of Hindu lore. Its name means "one with beautiful wings."
+It can create wind at will by flapping its wings and can also change its size freely.'),
+(?, 6, 4, 'A female Vetala in Hindu mythology. Some say she was the daughter of the demon Sunda, others say she was the daughter of Sketu, a yaksha.
+In the Ramayana, she incurred the wrath of the renowned sage Agastya and was transformed into a Rakshasi (Rajasthani woman). She lived in the forests in the basin of the Ganges River. Rama managed to cut off her arms, and even though she turned invisible, he was able to slay her at the order of the holy hermit Vishvamitra when she was ravaging the surrounding area.'),
+(?, 6, 3, 'An Indian deity that serves Yama, the god of death.
+When Yama judges a dead soul to be guilty, Turdak acts as the executioner and drags that soul to hell.'),
+(?, 6, 1, 'A giant serpent of Hindu lore.
+It is said that gods and demons used his body to churn the chaotic sea of milk and create Amrita, or immortality. Using Mt. Mandara as a pole and his body wrapped around it as a rope, the gods and demons took turns pulling his body on either side, moving Mt. Mandara around in the sea. The strain from this caused him to spew incredibly poisonous venom, which was then safely swallowed by Shiva before it could ruin Amrita.'),
+(?, 6, 4, 'A type of Preta appearing in Hindu tradition. They are the most dangerous of all Preta. They possess the dead bodies of humans and are constantly plotting their return to the realm of the living. Their eyes glow with a dull light.
+Legends say that they wield secret arts and can raise the dead by chanting mantras.
+They are considered the greatest of all evil spirits, and also a form of vampire. They suck the blood of their victims and bend them to their will, even controlling their movements like puppets.
+In Buddhist tradition, they are called Kondara or Metara.'),
+(?, 6, 1, 'One of the supreme deities in Indian mythology. He presides over maintenance and prosperity. His role is the preserver of the universe. It is believed that he will descend to earth ten times to maintain the balance of power. He is often depicted with four arms, a chakram called "Sudarsana," a club called "Kaumodakhi," a conch called "Panchajana," and a lotus flower.'),
+(?, 6, 5, 'A gigantic serpentine monster or giant that appears in the Rig Veda and other books. Its name means "obstacle" or "one who covers heaven and earth (the universe). Kasyapa, a holy sage who was plotting revenge against God, performed a ritual to bestow a creature comparable to God, and was born from a flame. He hates all living creatures and God from birth. With his huge body, he blocked the water flowing from the heavens, covered the sun with darkness, starved the earth, and caused a drought by capturing the "cloud cow" that called for rain. In several scriptures, he is depicted as a rival to Indra. When fighting Indra, he transforms into a giant serpent. Indra was once swallowed by him, but escaped while the serpent was yawning. Through the mediation of Vishnu, he made peace with Indra on the condition that "no god can attack me day or night, by wood, stone, iron, dry or wet. "Indra" killed "him" by attacking his weak point, his mouth, at dusk, neither day nor night, with "Vajra," a weapon made from the "bone" of the holy nymph "Dadicha," which was outside the condition. The water that had been blocked at that time flowed, and the return of the "cloud cow" brought heavy rains. Since this serpent returns every year, it is said that the battle against Indra continues to be fought every year.'),
+(?, 6, 3, 'A spirit of demigod status that serves the Hindu god of wealth. It lives in the Himalayas and guards treasure.
+It is a holy spirit of sorts that lives in other worlds, in the air, in forests, and underwater. It is known as Yasha in Buddhism, and protects its teachings. It prevents invasion of homes by evil spirits, grants blessings to the good, and devours the evil. It is a benevolent god in India, but in Japan, it is known as a dreadful man-eating demon that kills men and devours their bodies and souls.'),
+(?, 6, 2, 'Semi-divine beings in Hindu mythology.
+Though they were once worshiped by the Dravidians as goddesses of the harvest, they became interpreted as demons with the spread of Hinduism and the two clashing ideologies. They are depicted as naked women with voluptuous bodies.'),
+(?, 6, 2, 'In Hindu lore, he is a god who manages hell. He has been incorporated into Buddhism as well, where he is well-known as King Enma.
+He was originally born human and had a twin sister named Yami. He died first, which filled Yami with sorrow. The gods created day and night for her to forget him. As the first person to die, he was given the role of guiding the deceased to the land of the dead, but he eventually began punishing them according to their deeds while alive. Originally, the land of the dead consisted only of heaven, but through his work, hell was born and over time he came to manage it.')
 ;
