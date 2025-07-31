@@ -20,8 +20,3 @@ const db = new Database(dbPath);
 db.exec(initSql);
 
 console.log('✅ Database created successfully from init.sql');
-
-// The following SQL script is left in here until values for the questions have been added
-// INSERT INTO Image (iId, iPath) VALUES ();
-// INSERT INTO Answer (aId, qId, iId, aText) VALUES();
-// INSERT INTO Icon (icoId, icoPath) VALUES();
