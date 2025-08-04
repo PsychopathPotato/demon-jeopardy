@@ -1,6 +1,5 @@
 import Database from 'better-sqlite3';
 import { getDatabasePath } from './pathResolver.js';
-import { BrowserWindow } from 'electron';
 import fs from 'fs';
 
 // Load expanse.db from the database/ directory
@@ -15,14 +14,12 @@ if (!fs.existsSync(dbPath)) {
 const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 
-export function getQuestions(mainWindow: BrowserWindow) {
-    return new Promise((resolve, reject) => {
-        try {
-            const stmt = db.prepare('SELECT * FROM questions');
-            const questions = stmt.all();
-            resolve(mainWindow.webContents.send('questions', questions));
-        } catch (error) {
-            reject(error);
-        }
-    });
-}
+export function getQuestions() {
+    try {
+        const stmt = db.prepare('SELECT * FROM Question');
+        const questions = stmt.all();
+        return questions;
+    } catch (error) {
+        console.log(error);
+    }
+};
