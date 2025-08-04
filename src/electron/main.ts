@@ -21,7 +21,6 @@ app.on('ready', () => {
     }
 
     ipcMain.handle('get-questions', () => {
-        console.log(getQuestions(mainWindow));
-        return getQuestions(mainWindow);
+        return getQuestions();
     });
 });
