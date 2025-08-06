@@ -6,6 +6,14 @@
         {
             "from": "src/models/expanse.db",
             "to": "expanse.db"
+        },
+        {
+            "from": "ui/assets/icons",
+            "to": "assets/icons"
+        },
+        {
+            "from": "ui/assets/images",
+            "to": "assets/images"
         }
     ],
     "icon": "./desktopIcon.png",
