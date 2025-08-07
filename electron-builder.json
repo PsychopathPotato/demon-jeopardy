@@ -8,12 +8,12 @@
             "to": "expanse.db"
         },
         {
-            "from": "ui/assets/icons",
-            "to": "assets/icons"
+            "from": "src/ui/assets/icons",
+            "to": "icons"
         },
         {
-            "from": "ui/assets/images",
-            "to": "assets/images"
+            "from": "src/ui/assets/images",
+            "to": "images"
         }
     ],
     "icon": "./desktopIcon.png",

@@ -29,13 +29,10 @@ export function createSolo(sName: string, iconId: number) {
 export function getIcon(iconId: number) {
     try {
         const stmt = db.prepare(`SELECT iconName FROM Icon WHERE iconId = ?`);
-        const icon = stmt.get(iconId);
+        const icon = stmt.get(iconId) as { iconName: string } | undefined;
         return icon;
     } catch (error) {
         console.log(error);
-    }
-    finally {
-        db.close();
     }
 };
 
@@ -45,7 +42,7 @@ export function getSoloInfo(sId: number, iconId: number) {
             FROM Solo 
             WHERE sId = ?, iconId = ?
             JOIN Icon iconName ON Solo.iconId = Icon.iconId`);
-        const solo = stmt.get(sId, iconId);
+        const solo = stmt.get(sId, iconId) as { sName: string; iconName: string; sPoints: number } | undefined;
         return solo;
     } catch (error) {
         console.log(error);
@@ -68,20 +65,18 @@ export function createQTable() {
             for (const category of categories) {
                 const questions = [];
                 for (let pointId = 1; pointId <= 5; pointId++) {
-                    const question = getRandomQuestions.get(category.cId, pointId);
+                    const insertQTable = db.prepare(`INSERT INTO Q_Table (cId, qId) VALUES (?, ?)`);
+                    const question = getRandomQuestions.get(category.cId, pointId) as { qId: number; qText: string; cId: number; pId: number; pAmount: number } | undefined;
                     if (question) {
                         questions.push(question);
+                        insertQTable.run(category.cId, question.qId);
                     }
                 }
-                // Sort by pId just in case
-                //questions.sort((a, b) => a.pId - b.pId);
                 result[category.cName] = questions;
             }
             return result;
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -94,29 +89,30 @@ export function clearQTable () {
     } finally {
         db.close();
     }
-}
+};
 
 export function getQuestion(qId:number) {
     try {
-        const stmt = db.prepare(`SELECT qText FROM Q_Table WHERE qId = ?`);
-        const question = stmt.get(qId);
-        return question;
+        const stmt = db.prepare(`SELECT q.qText
+            FROM Question q
+            INNER JOIN Q_Table qt ON q.qId = qt.qId
+            WHERE qt.qId = ?`);
+        const question = stmt.get(qId) as { qText: string };
+        return question?.qText;
     } catch (error) {
         console.log(error);
-    }
-    finally {
-        db.close();
     }
 };
 
 export function getAnswer(qId: number) {
     try {
-        const stmt = db.prepare(`SELECT aText FROM Answer WHERE qId = ?`);
-        const imgName = stmt.get(qId);
-        return imgName;
+        const stmt = db.prepare(`SELECT a.aText
+            FROM Answer a
+            JOIN Q_Table qt ON a.qId = qt.qId
+            WHERE a.qId = ?`);
+        const img = stmt.get(qId) as { aText: string } | undefined;
+        return img;
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
