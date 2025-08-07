@@ -1,4 +1,3 @@
-// database/setup.js
 import fs from 'fs';
 import path from 'path';
 import Database from 'better-sqlite3';
@@ -20,3 +19,8 @@ const db = new Database(dbPath);
 db.exec(initSql);
 
 console.log('✅ Database created successfully from init.sql');
+
+// if you get an error running this 'node /src/models/setup.js', run the following scripts in the terminal:
+// npm install --save-dev electron-rebuild
+// npx electron-rebuild -f -w better-sqlite3
+// npm rebuild
