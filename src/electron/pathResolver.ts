@@ -18,17 +18,17 @@ export function getDatabasePath() {
 };
 
 export function getImagePath(qId: number) {
-    const img = getAnswer(qId);
+    const img = getAnswer(qId) as { aText: string } | undefined;
     return path.join(isDev()
         ? path.join(app.getAppPath(), 'src', 'ui', 'assets', 'images')
         : path.join(process.resourcesPath, 'images')
-    , `${img}.png`);
+    , `${img?.aText}.png`);
 };
 
 export function getIconPath(iconId: number){
-    const icon = getIcon(iconId);
+    const icon = getIcon(iconId) as { iconName: string } | undefined;
     return path.join(isDev()
         ? path.join(app.getAppPath(), 'src', 'ui', 'assets', 'icons')
         : path.join(process.resourcesPath, 'icons')
-    , `${icon}.png`);
+    , `${icon?.iconName}.png`);
 };
