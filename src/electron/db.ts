@@ -26,6 +26,30 @@ export function createSolo(sName: string, iconId: number) {
     }
 };
 
+export function changeSName(sId: number, sName: string) {
+    try {
+        const stmt = db.prepare(`UPDATE Solo SET sName = ? WHERE sId = ?`);
+        stmt.run(sName, sId);
+    } catch (error) {
+        console.log(error);
+    }
+    finally {
+        db.close();
+    }
+};
+
+export function changeSIcon(sId: number, iconId: number) {
+    try {
+        const stmt = db.prepare(`UPDATE Solo SET iconId = ? WHERE sId = ?`);
+        stmt.run(sId, iconId);
+    } catch (error) {
+        console.log(error);
+    }
+    finally {
+        db.close();
+    }
+};
+
 export function getIcon(iconId: number) {
     try {
         const stmt = db.prepare(`SELECT iconName FROM Icon WHERE iconId = ?`);
@@ -48,6 +72,85 @@ export function getSoloInfo(sId: number, iconId: number) {
         console.log(error);
     } finally {
         db.close();
+    }
+};
+
+export function createTeam(vName: string, iconId: number) {
+    try {
+        const stmt = db.prepare(`INSERT INTO Versus (vName, iconId) VALUES (?, ?)`);
+        stmt.run(vName, iconId);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        db.close();
+    }
+};
+
+export function changeVName(vId: number, vName: string) {
+    try {
+        const stmt = db.prepare(`UPDATE Versus SET vName = ? WHERE vId = ?`);
+        stmt.run(vName, vId);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        db.close();
+    }
+};
+
+export function changeVIcon(vId: number, iconId: number) {
+    try {
+        const stmt = db.prepare(`UPDATE Versus SET iconId = ? WHERE vId = ?`);
+        stmt.run(iconId, vId);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        db.close();
+    }
+};
+
+export function getTeamInfo(vId: number, iconId: number) {
+    try {
+        const stmt = db.prepare(`SELECT vName, iconName, vPoints
+            FROM Versus
+            WHERE vId = ? AND Versus.iconId = ?
+            JOIN Icon iconName ON Versus.iconId = Icon.iconId
+            `);
+        const teams = stmt.get(vId, iconId) as { vId: number; vName: string; iconName: string; vPoints: number }[];
+        return teams;
+    } catch (error) {
+        console.log(error);
+    } finally {
+        db.close();
+    }
+};
+
+export function startSteal(vId: number, qId: number) {
+    try {
+        const time = getTimer(qId) as { timeId: number };
+
+        const insertSteal = db.prepare(`
+            INSERT INTO Steal (vId, qId, timeId)
+            VALUES (?, ?, ?)
+        `);
+
+        insertSteal.run(vId, qId, time.timeId);
+    } catch (error) {
+        console.error("Error inserting steal attempt:", error);
+    }
+};
+
+export function stealSuccess(vId: number, qId: number, attempted: boolean) {
+    try {
+
+        const updateSteal = db.prepare(`
+            UPDATE Steal
+            SET attempted = 1
+            WHERE vId = ? AND qId = ?
+        `);
+
+        updateSteal.run(vId, qId, attempted);
+    } catch (error) {
+        console.error("Error updating steal attempt:", error);
     }
 };
 
@@ -79,6 +182,42 @@ export function createQTable() {
         console.log(error);
     }
 };
+
+export function updateQTable(qId: number, cId: number) {
+    try {
+        const updateQTable = db.prepare(`
+            UPDATE Q_Table 
+            SET attempted = 1
+            WHERE qId = ? & cId = ?`);
+        updateQTable.run(cId, qId);
+    } catch (error) {
+        console.log(error);
+    }
+    finally {
+        db.close();
+    }
+};
+
+export function getTimer(qId: number) {
+    try {
+        const getTime = db.prepare(`
+            SELECT pt.timeId
+            FROM Question q
+            JOIN Point pt ON q.pId = pt.pId
+            WHERE q.qId = ?
+        `);
+        const timer = getTime.get(qId) as { timeId: number } | undefined;
+
+        if (!timer) {
+            throw new Error(`No timeId found for qId ${qId}`);
+        }
+        return timer
+    } catch (error) {
+        console.log(error);
+    } finally {
+        db.close();
+    }
+}
 
 export function clearQTable () {
     try {
