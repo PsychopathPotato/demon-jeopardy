@@ -255,3 +255,10 @@ export function getAnswer(qId: number) {
         console.log(error);
     }
 };
+
+// setResults
+// getResults
+// clearResults
+// setScoreboard
+// getScoreboard
+// updateScoreboard
