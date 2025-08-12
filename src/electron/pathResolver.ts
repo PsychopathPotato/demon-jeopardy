@@ -19,16 +19,24 @@ export function getDatabasePath() {
 
 export function getImagePath(qId: number) {
     const img = getAnswer(qId) as { aText: string } | undefined;
+
+    const fileName = img?.aText.replace(/ /g, '_');
+
+    console.log(fileName);
+
     return path.join(isDev()
         ? path.join(app.getAppPath(), 'src', 'ui', 'assets', 'images')
         : path.join(process.resourcesPath, 'images')
-    , `${img?.aText}.png`);
+    , `${fileName}.png`);
 };
 
 export function getIconPath(iconId: number){
     const icon = getIcon(iconId) as { iconName: string } | undefined;
+
+    const fileName = icon?.iconName.replace(/ /g, '_');
+
     return path.join(isDev()
         ? path.join(app.getAppPath(), 'src', 'ui', 'assets', 'icons')
         : path.join(process.resourcesPath, 'icons')
-    , `${icon?.iconName}.png`);
+    , `${fileName}.png`);
 };
