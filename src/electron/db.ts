@@ -154,34 +154,47 @@ export function stealSuccess(vId: number, qId: number, attempted: boolean) {
     }
 };
 
-export function createQTable() {
+export function createQTable(): QTableResult{
     try {
-        const categories = db.prepare(`SELECT cId, cName FROM Category`).all() as { cId: number; cName: string }[];
-        const getRandomQuestions = db.prepare(`
+        const getCategories = db.prepare<[], Category>(`
+            SELECT cId, cName FROM Category
+        `);
+        const categories = getCategories.all();
+
+        const getRandomQuestions = db.prepare<[number, number], QuestionWithPoints>(`
             SELECT q.qId, q.qText, q.cId, q.pId, p.pAmount
             FROM Question q
             JOIN Point p ON q.pId = p.pId
             WHERE q.cId = ? AND q.pId = ?
             ORDER BY RANDOM()
-            LIMIT 1`);
-            const result: { [key: string]: unknown[] } = {};
-            for (const category of categories) {
-                const questions = [];
-                for (let pointId = 1; pointId <= 5; pointId++) {
-                    const insertQTable = db.prepare(`INSERT INTO Q_Table (cId, qId) VALUES (?, ?)`);
-                    const question = getRandomQuestions.get(category.cId, pointId) as { qId: number; qText: string; cId: number; pId: number; pAmount: number } | undefined;
-                    if (question) {
-                        questions.push(question);
-                        insertQTable.run(category.cId, question.qId);
-                    }
+            LIMIT 1
+        `);
+
+        const insertQTable = db.prepare<[number, number]>(`
+            INSERT INTO Q_Table (cId, qId) VALUES (?, ?)
+        `);
+
+        const result: QTableResult = {};
+
+        for (const category of categories) {
+            const questions: QuestionWithPoints[] = [];
+
+            for (let pointId = 1; pointId <= 5; pointId++) {
+                const question = getRandomQuestions.get(category.cId, pointId);
+                if (question) {
+                    questions.push(question);
+                    insertQTable.run(category.cId, question.qId);
                 }
-                result[category.cName] = questions;
             }
-            return result;
+
+            result[category.cName] = questions;
+        }
+
+        return result;
     } catch (error) {
-        console.log(error);
+        throw console.error(error);
     }
-};
+}
 
 export function updateQTable(qId: number, cId: number) {
     try {

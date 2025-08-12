@@ -1,6 +1,6 @@
 import {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
-import {isDev} from './util.js';
+import {ipcMainHandle, isDev} from './util.js';
 import { createSolo, getIcon, getSoloInfo, getQuestion, getAnswer, clearQTable, createQTable, changeSName, changeSIcon, createTeam, changeVName, changeVIcon, getTeamInfo, startSteal, stealSuccess, updateQTable, getTimer} from './db.js';
 import { getPreloadPath, getIconPath, getImagePath } from './pathResolver.js';
 
@@ -61,7 +61,7 @@ app.on('ready', () => {
         return getTeamInfo(vId, iconId);
     });
 
-    ipcMain.handle('create-table', async () => {
+    ipcMainHandle('createTable', () => {
         return createQTable();
     });
 
@@ -93,7 +93,7 @@ app.on('ready', () => {
         return getTimer(qId);
     });
 
-    ipcMain.handle('clear', async () => {
+    ipcMainHandle('clear', () => {
         return clearQTable();
     });
 });
