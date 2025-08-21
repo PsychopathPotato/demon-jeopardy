@@ -14,27 +14,21 @@ if (!fs.existsSync(dbPath)) {
 const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 
-export function createSolo(sName: string, iconId: number) {
+export function createSolo({sName, iconId}: Solo): void {
     try {
         const stmt = db.prepare(`INSERT INTO Solo (sName, iconId) VALUES (?, ?)`);
         stmt.run(sName, iconId);
     } catch (error) {
         console.log(error);
     }
-    finally {
-        db.close();
-    }
 };
 
-export function changeSName(sId: number, sName: string) {
+export function changeSName({sId, sName}: SName): void {
     try {
         const stmt = db.prepare(`UPDATE Solo SET sName = ? WHERE sId = ?`);
         stmt.run(sName, sId);
     } catch (error) {
         console.log(error);
-    }
-    finally {
-        db.close();
     }
 };
 
@@ -44,9 +38,6 @@ export function changeSIcon(sId: number, iconId: number) {
         stmt.run(sId, iconId);
     } catch (error) {
         console.log(error);
-    }
-    finally {
-        db.close();
     }
 };
 
@@ -70,8 +61,6 @@ export function getSoloInfo(sId: number, iconId: number) {
         return solo;
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -81,8 +70,6 @@ export function createTeam(vName: string, iconId: number) {
         stmt.run(vName, iconId);
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -92,8 +79,6 @@ export function changeVName(vId: number, vName: string) {
         stmt.run(vName, vId);
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -103,8 +88,6 @@ export function changeVIcon(vId: number, iconId: number) {
         stmt.run(iconId, vId);
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -119,8 +102,6 @@ export function getTeamInfo(vId: number, iconId: number) {
         return teams;
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 
@@ -160,7 +141,6 @@ export function createQTable(): QTableResult{
             SELECT cId, cName FROM Category
         `);
         const categories = getCategories.all();
-
         const getRandomQuestions = db.prepare<[number, number], QuestionWithPoints>(`
             SELECT q.qId, q.qText, q.cId, q.pId, p.pAmount
             FROM Question q
@@ -169,16 +149,12 @@ export function createQTable(): QTableResult{
             ORDER BY RANDOM()
             LIMIT 1
         `);
-
         const insertQTable = db.prepare<[number, number]>(`
             INSERT INTO Q_Table (cId, qId) VALUES (?, ?)
         `);
-
         const result: QTableResult = {};
-
         for (const category of categories) {
             const questions: QuestionWithPoints[] = [];
-
             for (let pointId = 1; pointId <= 5; pointId++) {
                 const question = getRandomQuestions.get(category.cId, pointId);
                 if (question) {
@@ -186,15 +162,13 @@ export function createQTable(): QTableResult{
                     insertQTable.run(category.cId, question.qId);
                 }
             }
-
             result[category.cName] = questions;
         }
-
         return result;
     } catch (error) {
         throw console.error(error);
     }
-}
+};
 
 export function updateQTable(qId: number, cId: number) {
     try {
@@ -205,9 +179,6 @@ export function updateQTable(qId: number, cId: number) {
         updateQTable.run(cId, qId);
     } catch (error) {
         console.log(error);
-    }
-    finally {
-        db.close();
     }
 };
 
@@ -227,8 +198,6 @@ export function getTimer(qId: number) {
         return timer
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 }
 
@@ -238,8 +207,6 @@ export function clearQTable () {
         stmt.run();
     } catch (error) {
         console.log(error);
-    } finally {
-        db.close();
     }
 };
 

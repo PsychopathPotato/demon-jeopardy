@@ -1,8 +1,19 @@
 import {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
+import fs from 'fs';
 import {ipcMainHandle, isDev} from './util.js';
 import { createSolo, getIcon, getSoloInfo, getQuestion, getAnswer, clearQTable, createQTable, changeSName, changeSIcon, createTeam, changeVName, changeVIcon, getTeamInfo, startSteal, stealSuccess, updateQTable, getTimer} from './db.js';
-import { getPreloadPath, getIconPath, getImagePath } from './pathResolver.js';
+import { getPreloadPath, getDatabasePath, getIconPath, getImagePath } from './pathResolver.js';
+import Database from 'better-sqlite3';
+
+const dbPath = getDatabasePath();
+
+if (!fs.existsSync(dbPath)) {
+    console.error(`Database file not found at: ${dbPath}`);
+    throw new Error(`Database file not found at: ${dbPath}`);
+};
+
+const db = new Database(dbPath);
 
 app.on('ready', () => {
     const mainWindow = new BrowserWindow({
@@ -21,12 +32,12 @@ app.on('ready', () => {
         mainWindow.loadFile(path.join(app.getAppPath(), '/dist-react/index.html'));
     }
 
-    ipcMain.handle('create-solo', async (_event, sName: string, iconId: number) => {
-        return createSolo(sName, iconId);
+    ipcMainHandle<'createSolo', [string, number]>("createSolo", async (_event, sName, iconId) => {
+        return createSolo({sName, iconId});
     });
 
-    ipcMain.handle('change-s-name', async (_event, sId: number, sName: string) => {
-        return changeSName(sId, sName);
+    ipcMainHandle<'changeSName',[number, string]>("changeSName", async (_event, sId: number, sName: string) => {
+        return changeSName({sId, sName});
     });
 
     ipcMain.handle('change-s-icon', async (_event, sId: number, iconId: number) => {
@@ -61,7 +72,7 @@ app.on('ready', () => {
         return getTeamInfo(vId, iconId);
     });
 
-    ipcMainHandle('createTable', () => {
+    ipcMainHandle('createTable', async () => {
         return createQTable();
     });
 
@@ -96,4 +107,10 @@ app.on('ready', () => {
     ipcMainHandle('clear', () => {
         return clearQTable();
     });
+});
+
+app.on('before-quit', () => {
+    if (db && db.open) {
+        db.close();
+    }
 });

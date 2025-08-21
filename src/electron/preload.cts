@@ -2,23 +2,23 @@ import { IpcRendererEvent } from "electron";
 
 const electron = require('electron');
 
-
-function ipcInvoke<Key extends keyof EventPayloadMapping>(
-    key: Key
-): Promise<EventPayloadMapping[Key]> {
-    return electron.ipcRenderer.invoke(key);
-};
-
-function ipcOn<Key extends keyof EventPayloadMapping>(
+function ipcInvoke<Key extends keyof EventPayloadMapping, Args extends unknown[] = [] >(
     key: Key,
-    callback: (payload: EventPayloadMapping[Key]) => void
-) {
-    electron.ipcRenderer.on(key, (_: IpcRendererEvent, payload: EventPayloadMapping[Key]) => callback(payload))
+    ...args: Args
+): Promise<EventPayloadMapping[Key]> {
+    return electron.ipcRenderer.invoke(key, ...args);
 };
+
+// function ipcOn<Key extends keyof EventPayloadMapping>(
+//     key: Key,
+//     callback: (payload: EventPayloadMapping[Key]) => void
+// ) {
+//     electron.ipcRenderer.on(key, (_: IpcRendererEvent, payload: EventPayloadMapping[Key]) => callback(payload))
+// };
 
 electron.contextBridge.exposeInMainWorld('electron', {
-    createSolo: (sName: string, iconId: number) => electron.ipcRenderer.invoke('create-solo', sName, iconId),
-    changeSName: (sId: number, sName: string) => electron.ipcRenderer.invoke('change-s-name', sId, sName),
+    createSolo: (sName: string, iconId: number) => ipcInvoke<'createSolo', [string, number]>('createSolo', sName, iconId),
+    changeSName: (sId: number, sName: string) => ipcInvoke<'changeSName', [number, string]>('changeSName', sId, sName),
     changeSIcon: (sId: number, iconId: number) => electron.ipcRenderer.invoke('change-s-icon', sId, iconId),
     getIcon:(iconId: number) => electron.ipcRenderer.invoke('get-icon', iconId),
     getIconPath: (iconId: number) => electron.ipcRenderer.invoke('get-icon-path', iconId),

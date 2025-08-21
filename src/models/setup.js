@@ -20,7 +20,10 @@ db.exec(initSql);
 
 console.log('✅ Database created successfully from init.sql');
 
-// if you get an error running this 'node /src/models/setup.js', run the following scripts in the terminal:
+// if you get an error running this 'node src/models/setup.js', run the following scripts in the terminal:
+// rm -rf node_modules
+// rm package-lock.json
+// npm install
 // npm install --save-dev electron-rebuild
 // npx electron-rebuild -f -w better-sqlite3
 // npm rebuild
